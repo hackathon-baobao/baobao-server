@@ -1,9 +1,6 @@
 package com.baobao.baobaoserver.member;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -17,6 +14,8 @@ public class Member {
 
     private String name;
 
+    private String school;
+
     @Enumerated(EnumType.STRING)
     private MemberRole role;
 
@@ -24,10 +23,20 @@ public class Member {
 
     private String kakaoRefreshToken;
 
+    private Long point;
+
     public void update(String email, String name, String kakaoAccessToken, String kakaoRefreshToken) {
         this.email = email;
         this.name = name;
         this.kakaoAccessToken = kakaoAccessToken;
         this.kakaoRefreshToken = kakaoRefreshToken;
+    }
+
+    public void updateSchool(String school){
+        this.school = school;
+    }
+
+    public void addPoint(Long point){
+        this.point += point;
     }
 }

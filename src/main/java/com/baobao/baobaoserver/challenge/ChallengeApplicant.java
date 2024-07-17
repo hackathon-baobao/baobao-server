@@ -14,11 +14,17 @@ public class ChallengeApplicant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean isComplete;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_member_id")
     private Member applicant;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_member_id")
+    @JoinColumn(name = "fk_challenge_id")
     private Challenge challenge;
+
+    public void updateIsComplete(Boolean isComplete){
+        this.isComplete = isComplete;
+    }
 }

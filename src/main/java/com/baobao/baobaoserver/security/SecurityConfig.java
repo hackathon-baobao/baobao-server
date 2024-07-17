@@ -40,7 +40,7 @@ class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(POST, "/login").permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .exceptionHandling(exceptionHandler ->
                         exceptionHandler

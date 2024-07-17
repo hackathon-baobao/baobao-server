@@ -36,6 +36,7 @@ public class ChallengeService {
         return ResponseData.ok("챌린지 조회 성공", ChallengeDescriptionRes.of(challenge));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Response delete(Long id){
         challengeRepository.deleteById(id);
         return ResponseData.ok("챌린지 삭제 성공");
