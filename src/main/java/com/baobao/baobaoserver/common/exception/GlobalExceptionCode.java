@@ -29,7 +29,9 @@ public enum GlobalExceptionCode implements ExceptionCode {
     EXPIRED_JWT(UNAUTHORIZED, "Jwt is expired"),
     UNABLE_TO_SEND_EMAIL(FORBIDDEN,"Unable to send email"),
     WRONG_PASSWORD(HttpStatus.UNAUTHORIZED, "잘못된 비밀번호"),
-    ENDPOINT_NOT_FOUND(NOT_FOUND, "엔드포인트를 찾을 수 없음");
+    ENDPOINT_NOT_FOUND(NOT_FOUND, "엔드포인트를 찾을 수 없음"),
+    LESS_POINT(BAD_REQUEST, "포인트 부족"),
+    HAVE_NOT_ANIMAL(FORBIDDEN, "동물이 없음");
 
     private final HttpStatus status;
     private final String message;

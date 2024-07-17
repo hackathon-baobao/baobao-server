@@ -14,7 +14,7 @@ public class ChallengeController {
     private final ChallengeService challengeService;
 
     @PostMapping
-    public Response append(ChallengeAppendReq req){
+    public Response append(@RequestBody ChallengeAppendReq req){
         return challengeService.append(req);
     }
 

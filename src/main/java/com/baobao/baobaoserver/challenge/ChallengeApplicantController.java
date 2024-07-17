@@ -1,8 +1,11 @@
 package com.baobao.baobaoserver.challenge;
 
 import com.baobao.baobaoserver.common.Response;
+import com.baobao.baobaoserver.common.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/challenge-applicant")
@@ -21,7 +24,7 @@ public class ChallengeApplicantController {
     }
 
     @GetMapping
-    public Response read(@RequestParam Long id){
+    public ResponseData<List<ApplicantRes>> read(@RequestParam Long id){
         return challengeApplicantService.read(id);
     }
 

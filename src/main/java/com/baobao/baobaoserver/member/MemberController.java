@@ -1,8 +1,11 @@
 package com.baobao.baobaoserver.member;
 
 import com.baobao.baobaoserver.common.Response;
+import com.baobao.baobaoserver.common.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/member")
@@ -15,4 +18,13 @@ public class MemberController {
         return memberService.appendSchool(school);
     }
 
+    @GetMapping("/ranks-school")
+    public ResponseData<List<SchoolHeight>> getSchoolHeightRanks() {
+        return memberService.getSchoolHeightRanks();
+    }
+
+    @GetMapping("/ranks-kakao")
+    public ResponseData<List<KakaoHeight>> getKakaoHeightRanks() {
+        return memberService.getKakaoHeightRanks();
+    }
 }

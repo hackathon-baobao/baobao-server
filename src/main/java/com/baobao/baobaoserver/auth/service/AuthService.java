@@ -9,6 +9,11 @@ import com.baobao.baobaoserver.member.MemberRepository;
 import com.baobao.baobaoserver.member.MemberRole;
 import com.baobao.baobaoserver.security.security.jwt.Token;
 import com.baobao.baobaoserver.security.security.jwt.TokenIssuer;
+import com.baobao.baobaoserver.tree.AnimalState;
+import com.baobao.baobaoserver.tree.TreeLevel;
+import com.baobao.baobaoserver.util.RandomTreeSelector;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,7 +34,6 @@ public class AuthService {
         KakaoUserInfoResponse kakaoUser = kakaoUserClient.getKakaoUser("Bearer "+kakaoToken.access_token());
         log.info("{}",kakaoUser);
         Member member = memberRepository.findByEmail(kakaoUser.kakao_account().email());
-
         if (member == null) {
             member = Member.builder()
                     .email(kakaoUser.kakao_account().email())
@@ -37,6 +41,11 @@ public class AuthService {
                     .role(MemberRole.MEMBER)
                     .kakaoAccessToken(kakaoToken.access_token())
                     .kakaoRefreshToken(kakaoToken.refresh_token())
+                    .point(0L)
+                    .bird(AnimalState.NONE)
+                    .squirrel(AnimalState.NONE)
+                    .treeKind(RandomTreeSelector.getRandomTree())
+                    .height(0L)
                     .build();
             memberRepository.save(member);
         } else {
