@@ -27,4 +27,9 @@ public class MemberController {
     public ResponseData<List<KakaoHeight>> getKakaoHeightRanks() {
         return memberService.getKakaoHeightRanks();
     }
+
+    @GetMapping("/point/my")
+    public ResponseData<Long> getPoint(){
+        return memberService.getPoint();
+    }
 }

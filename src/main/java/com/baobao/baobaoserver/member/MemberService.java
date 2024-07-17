@@ -38,7 +38,12 @@ public class MemberService {
         ElementsWrapper elementsWrapper = kakaoFrientClient.getFriend("Bearer "+curMember.getKakaoAccessToken());
         List<String> names = elementsWrapper.elements().stream().map(ProfileRecord::profile_nickname).toList();
         List<Member> members = memberRepository.findByNameInOrderByPointDesc(names);
-        List<KakaoHeight> result = members.stream().map(m->new KakaoHeight(m.getEmail(),m.getHeight())).toList();
+        members.add(curMember);
+        List<KakaoHeight> result = members.stream().map(m->new KakaoHeight(m.getEmail(),m.getName(),m.getHeight())).toList();
         return ResponseData.ok("카카오 랭킹 조회 성공", result);
+    }
+
+    public ResponseData<Long> getPoint(){
+        return ResponseData.ok("포인트 조회 성공",sessionHolder.current().getPoint());
     }
 }
